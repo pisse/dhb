@@ -63,7 +63,7 @@ export default {
     total () {
       let invest = parseInt(this.asset.invest) || 0
       let remaining = parseInt(this.asset.remaining) || 0
-      console.log(invest, remaining)
+      // console.log(invest, remaining)
       return (parseInt(this.asset.invest) || 0) + (this.asset.remaining || 0)
     }
   },

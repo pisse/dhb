@@ -16,6 +16,7 @@ let Services = {
   userAsset: Domain + 'home/get-user-asset',
   totalEarn: Domain + 'home/get-total-earn',
   prodList: Domain + 'prod/list',
+  selfList: Domain + 'prod/self-list',
 
   // 详细页
   prodDetail: Domain + 'prod/detail',

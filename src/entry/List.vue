@@ -35,6 +35,28 @@
         </flexbox>
       </div>
     </div>
+
+    <template v-if="selfList.length>0">
+      <div class="self-title">
+        <span>定制项目</span>
+     </div>
+      <div class="list-wrap self-list-wrap">
+        <div v-for="(prod, idx) in selfList" :key="idx" class="list-item" @click="goDetail(prod.id, $event)">
+          <h3 class="name">{{prod.title}}</h3>
+          <flexbox class="content" >
+            <flexbox-item><span class="revenue">{{prod.rate}}%</span></flexbox-item>
+            <flexbox-item><span class="time">{{prod.invest_date}}天</span></flexbox-item>
+            <flexbox-item><span class="desc">{{prod.return_type}}</span></flexbox-item>
+          </flexbox>
+          <flexbox class="revest-content">
+            <flexbox-item><span class="num" v-show="parseInt(prod.buy_times)>=10"> {{prod.buy_times}}人已投</span></flexbox-item>
+            <flexbox-item><span class=""></span></flexbox-item>
+            <flexbox-item class="percent-wrap"><!--<span class="desc">{{getRage(prod)}}%</span> <x-progress :percent="percent" :show-cancel="false"></x-progress>--></flexbox-item>
+          </flexbox>
+        </div>
+      </div>
+
+    </template>
     <v-footer type="list"></v-footer>
   </div>
 </template>
@@ -51,16 +73,23 @@ export default {
   data () {
     return {
       percent: 80,
-      list: []
+      list: [],
+      selfList: []
     }
   },
   created () {
     this.getList()
+    this.getSelfList()
   },
   methods: {
     getList () {
       this.requestPost(Services.prodList, {}, (remoteData) => {
-        this.list = remoteData.prod
+        this.list = remoteData.prod || []
+      })
+    },
+    getSelfList () {
+      this.requestPost(Services.selfList, {}, (remoteData) => {
+        this.selfList = remoteData.prod || []
       })
     },
     getRage (prod) {
@@ -111,8 +140,38 @@ export default {
     }
     .list-wrap{
       background-color: #ededed;
-      padding-bottom: 45px;
       padding-top: 5px;
+      &.self-list-wrap{
+        padding-bottom: 45px;
+      }
+    }
+    .self-title{
+      text-align: center;
+      color: #444;
+      position: relative;
+      background-color: #ededed;
+      & span{
+        position: relative;
+        z-index: 1;
+        padding: 0 14px;
+        background-color: #ededed;
+        color: rgb(51,51,51);
+        font-size: 14px;
+        height: 14px;
+        line-height: 14px;
+        display: inline-block;
+      }
+      &:before{
+        content: "";
+        height: 1px;
+        background: #d4d4d4;
+        position: absolute;
+        top: 49%;
+        left: 10px;
+        right: 10px;
+        -webkit-transform: scaleY(.5);
+        transform: scaleY(.5);
+      }
     }
     .list-item{
       padding: 10px;

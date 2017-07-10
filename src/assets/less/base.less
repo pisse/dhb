@@ -1,0 +1,80 @@
+
+.bg{
+  background-color: #ededed;
+  min-height: 100vh;
+}
+.vux-header{
+  background-color:#4374e2 !important;
+  .vux-header-title, .vux-header h1{
+    font-size: 15px;
+  }
+}
+.btn-wrap{
+  margin: 10px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  .weui-btn_primary{
+    background-color: rgb(151,151,151);
+    color: rgb(203,203,203);
+  }
+  &.active{
+    .weui-btn_primary{
+      background-color: #4374e2;
+      color: #fff;
+    }
+  }
+  .weui-btn_primary:not(.weui-btn_disabled):active{
+    background-color: #238fc5;
+  }
+  &.follow{
+    position: relative;
+  }
+}
+.weui-toast.weui-toast_text{
+   padding: 0 10px;
+}
+
+.vux-tab .vux-tab-item.vux-tab-selected{
+  color: #4374e2;
+  border-bottom: 3px solid #4374e2;
+}
+.vux-tab-ink-bar{
+  background-color: #4374e2;
+}
+.weui-cell:before{
+  left: 0;
+}
+
+.info{
+  color: #6d7c9d;
+  margin-top: 20px;
+  font-size: 13px;
+  padding: 0 10px;
+  .vux-x-icon {
+    fill: #4374e2;
+  }
+}
+.dialog-success{
+  .weui-dialog{
+    padding: 10px;
+    .info-box{
+      padding : 5px 10px 10px 10px;
+      border-bottom: 1px solid rgb(242,242,242);
+    }
+    .confirm-wrap{
+      margin-top: 5px;
+      color: #4374e2;
+    }
+  }
+}
+.weui-dialog .weui-dialog__btn_primary{
+  color: #4374e2;
+}
+.dialog-pwd{
+  .weui-dialog{
+    padding: 10px;
+  }
+
+}

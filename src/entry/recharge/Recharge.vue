@@ -12,7 +12,7 @@
       <x-button type="primary" @click.native="buy">提交</x-button>
     </div>
 
-    <div class="info">
+    <!--<div class="info">
       <x-icon type="ios-information-outline" size="10"></x-icon>
       由于大额充值手机银行无法支持，请您提交充值申请后，尽快通过电脑网银或柜台汇款至以下理财指定账户，我们2小时内审核后充至您的账户余额中。审核时间为工作日9:00~17:00，如遇节假日顺延。为保证资金快速到账，建议您工作日时间内充值转款。
       <br>
@@ -22,7 +22,7 @@
       户名：上海华肖网络科技有限公司
       <br>
       开户行：招商银行上海陆家嘴支行
-    </div>
+    </div>-->
 
     <toast width="12em" :time="2000" v-model="showToast" type="text">{{msg}}</toast>
 <!--
@@ -181,7 +181,7 @@
           // this.msg = '您已提交充值申请，请通过网银或柜台汇款至指定账户，我们为您尽快审核。'
 
           this.showConfirm = true
-          this.confirmMsg = '您已提交充值申请，请通过网银或柜台汇款至指定账户，我们为您尽快审核。'
+          this.confirmMsg = '您已提交充值指令，2小时内充至您的账户余额。' // '您已提交充值申请，请通过网银或柜台汇款至指定账户，我们为您尽快审核。'
           this.money = ''
         }).finally((e) => {
           this.showPwd = false

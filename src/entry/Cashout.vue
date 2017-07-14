@@ -169,7 +169,7 @@
           // this.msg = '您已提交提现申请，我们将为您尽快审核，并T+1内汇款至您绑定账户'
 
           this.showConfirm = true
-          this.confirmMsg = '您已提交提现申请，我们将为您尽快审核，并T+1内汇款至您绑定账户。'
+          this.confirmMsg = '您已提交提现指令，T+1内汇入您的绑定银行账户。' // '您已提交提现申请，我们将为您尽快审核，并T+1内汇款至您绑定账户。'
           this.money = ''
         }).finally((e) => {
           this.showPwd = false

@@ -12,7 +12,7 @@
         <div class="card-list-item" v-for="(card, idx) in profile.bankcard" :key="idx" @click="select(card)">
           <cell :title="card.bank_name" value="" >
             <div slot="icon">
-              <i class="iconfont" :class="backIcon(card.bank_name)"></i>
+              <i class="iconfont" :class="bankIcon(card.bank_name)"></i>
             </div>
           </cell>
 
@@ -100,14 +100,21 @@
       return {
         profile: {},
         backList: {
-          '工商银行': 'icon-gongshangyinhangicbcbank1193388easyiconnet',
-          '农业银行': 'icon-nongyeyinhang',
-          '建设银行': 'icon-jiansheyinhangbank1193390easyiconnet',
-          '中国银行': 'icon-zhongguoyinhangbank1193437easyiconnet',
-          '招商银行': 'icon-zhaoshangyinhangbank1193432easyiconnet',
-          '光大银行': 'icon-guangdayinxingyy',
-          '浦发银行': 'icon-iconfontshanghaipudongfazhanyinxing',
-          '上海银行': 'icon-shanghaiyinxing'
+          '工商银行': {icon: 'icon-gongshangyinhangicbcbank1193388easyiconnet', dayMax: '99', onceMax: '50'},
+          '兴业银行': {icon: 'icon-xingye', dayMax: '3000', onceMax: '100'},
+          '光大银行': {icon: 'icon-guangdayinxingyy', dayMax: '3000', onceMax: '100'},
+          '平安银行': {icon: 'icon-pinganyinxing', dayMax: '99', onceMax: '50'},
+          '民生银行': {icon: 'icon-305', dayMax: '3000', onceMax: '100'},
+          '交通银行': {icon: 'icon-jiaotongyinhangbank1193391easyiconnet', dayMax: '50', onceMax: '50'},
+          '广发银行': {icon: 'icon-guangfa', dayMax: '3000', onceMax: '100'},
+          '招商银行': {icon: 'icon-zhaoshangyinhangbank1193432easyiconnet', dayMax: '3000', onceMax: '100'}
+
+          // '农业银行': 'icon-nongyeyinhang',
+          // '建设银行': 'icon-jiansheyinhangbank1193390easyiconnet',
+          // '中国银行': 'icon-zhongguoyinhangbank1193437easyiconnet',
+          // '光大银行': 'icon-guangdayinxingyy',
+          // '浦发银行': 'icon-iconfontshanghaipudongfazhanyinxing',
+          // '上海银行': 'icon-shanghaiyinxing'
         },
         showDel: false,
         menus: {
@@ -146,8 +153,8 @@
         this.$router.go(-1)
         // this.selectedCardNo = no
       },
-      backIcon (bankName) {
-        let icon = this.backList[bankName]
+      bankIcon (bankName) {
+        let icon = (this.backList[bankName] || {})['icon']
         return icon
       },
       cartNo (number) {

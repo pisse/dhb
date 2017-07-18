@@ -64,8 +64,19 @@
       return {
         name: '',
         idcard: '',
-        cards: [['工商银行', '农业银行', '建设银行', '中国银行', '招商银行', '光大银行', '浦发银行', '上海银行']],
-        bankname: ['工商银行']
+        cards: [
+          [
+            '工商银行（限额单日/笔：99万/50万）',
+            '兴业银行（限额单日/笔：3000万/100万）',
+            '光大银行（限额单日/笔：3000万/100万）',
+            '平安银行（限额单日/笔：99万/50万）',
+            '民生银行（限额单日/笔：3000万/100万）',
+            '交通银行（限额单日/笔：50万/50万）',
+            '广发银行（限额单日/笔：3000万/100万）',
+            '招商银行（限额单日/笔：3000万/100万）'
+          ]
+        ],
+        bankname: ['工商银行（限额单日/笔：99万/50万）']
       }
     },
     computed: {
@@ -97,7 +108,7 @@
         this.requestPost(Services.bindBankCard, {
           id_name: this.name,
           card_no: this.idcard,
-          bank_name: this.bankname[0]
+          bank_name: this.bankname[0].slice(0, 4)
         }, (remoteData) => {
           this.name = ''
           this.idcard = ''

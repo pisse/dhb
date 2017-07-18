@@ -5,8 +5,8 @@
 
     <group>
       <x-input title='' placeholder="请输入原密码" :max="6" type="password" v-model="old"></x-input>
-      <x-input title='' placeholder="请输入新密码" :max="6" type="password" v-model="new1" ></x-input>
-      <x-input title='' placeholder="请再次输入新密码" :max="6" type="password" v-model="new2"></x-input>
+      <x-input title='' placeholder="请输入6位数字新密码" :max="6" type="password" v-model="new1" ></x-input>
+      <x-input title='' placeholder="请再次输入6位数字新密码" :max="6" type="password" v-model="new2"></x-input>
     </group>
 
     <div class="btn-wrap follow" :class="{active: isActive}">
@@ -119,6 +119,10 @@
         if (this.new1 !== this.new2) {
           this.showToast = true
           this.msg = '两次新密码不一样'
+          return
+        }
+        if (/\D/.test(this.new1)) {
+          this.msg = '密码只能为数字'
           return
         }
 

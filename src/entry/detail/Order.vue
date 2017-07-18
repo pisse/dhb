@@ -60,7 +60,7 @@
     </div>
 
 
-    <x-dialog v-model="showPwd" class="dialog-pwd" hide-on-blur>
+    <!--<x-dialog v-model="showPwd" class="dialog-pwd" hide-on-blur>
       <div>
         <span class="vux-close">支付密码</span>
       </div>
@@ -70,7 +70,50 @@
       <div class="btn-wrap follow" :class="{active: isPwdActive}">
         <x-button type="primary" @click.native="pay">确认</x-button>
       </div>
-    </x-dialog>
+    </x-dialog>-->
+    <transition name="fade" >
+      <div class="password-wrap" v-show="showPwd">
+        <div class="password-content">
+          <h6 class="pwd-title"><span class="pwd-close" @click="close"><x-icon type="ios-close-empty"  size="30" ></x-icon></span>交易密码</h6>
+          <div class="content">
+            <p class="desc">预约</p>
+            <div class="money">
+              &yen; {{buyAmount}}
+            </div>
+
+            <flexbox :gutter="0">
+              <flexbox-item v-for="n in pwdLength" :key="n"><div class="flex-item-pwd isWrited">&nbsp;<span class="circle"></span></div></flexbox-item>
+              <flexbox-item v-for="m in (6-pwdLength)" :key="'empyt'+m"><div class="flex-item-pwd">&nbsp;</div></flexbox-item>
+            </flexbox>
+          </div>
+        </div>
+        <transition name="slide">
+          <div class="keyboard" v-show="showPwd">
+            <flexbox :gutter="0">
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('1')">1</div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('2')">2</div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('3')">3</div></flexbox-item>
+            </flexbox>
+            <flexbox :gutter="0">
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('4')">4</div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('5')">5</div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('6')">6</div></flexbox-item>
+            </flexbox>
+            <flexbox :gutter="0">
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('7')">7</div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('8')">8</div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('9')">9</div></flexbox-item>
+            </flexbox>
+            <flexbox :gutter="0">
+              <flexbox-item class="empty"><div class="flex-item-keyborad"></div></flexbox-item>
+              <flexbox-item><div class="flex-item-keyborad" @click="pwdIpt('0')">0</div></flexbox-item>
+              <flexbox-item class="delete"><div class="flex-item-keyborad" @click="pwdIpt('-1')"><i class="iconfont icon-delete"></i></div></flexbox-item>
+            </flexbox>
+          </div>
+        </transition>
+      </div>
+    </transition>
+
   </div>
 </template>
 
@@ -112,6 +155,9 @@ export default {
     },
     isPwdActive () {
       return !!this.pwd
+    },
+    pwdLength () {
+      return this.pwd.length
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -156,11 +202,11 @@ export default {
       this.pwd = ''
     },
     pay () {
-      if (!this.pwd) {
+      /* if (!this.pwd) {
         this.showToast = true
         this.msg = '请输入支付密码'
         return
-      }
+      } */
 
       let params = {
         investment_sum: this.buyAmount,
@@ -183,6 +229,21 @@ export default {
         // console.log(e)
         this.showPwd = false
       })
+    },
+    pwdIpt (num) {
+      if (num === '-1') {
+        this.pwd = this.pwd.slice(0, this.pwd.length - 1)
+      } else {
+        this.pwd += num
+      }
+      // console.log(this.pwd)
+      if (this.pwd.length == 6) {
+        this.showPwd = false
+        this.pay()
+      }
+    },
+    close () {
+      this.showPwd = false
     },
     onConfirm () {
       this.showConfirmDialog = false

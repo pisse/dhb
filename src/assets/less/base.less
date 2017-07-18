@@ -78,3 +78,134 @@
   }
 
 }
+
+.password-wrap{
+  position : fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow : hidden;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  &.fade-enter-active, &.fade-leave-active{
+    transition : all 0.3s linear
+  }
+  &.fade-enter,  &.fade-leave-active{
+    opacity : 0;
+  }
+  .password-content{
+    position: absolute;
+    top: 28%;
+    left: 10%;
+    right: 10%;
+    background-color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    padding-bottom: 15px;
+    .pwd-title{
+      font-size: 16px;
+      position: relative;
+      line-height: 40px;
+      .pwd-close{
+        position: absolute;
+        left: 0;
+        top: 5px;
+      }
+      &:after{
+        display: block;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        border-top: 1px solid #4374e2;
+        content: " ";
+        transform: scaleY(0.5);
+      }
+    }
+    .content{
+      padding: 10px 10px 0 10px;
+      .money{
+        font-size: 28px;
+      }
+      .vux-flexbox{
+        border: 1px solid rgb(222,222,222);
+        box-sizing: border-box;
+        text-align: center;
+        .vux-flexbox-item{
+          border-right: 1px solid rgb(242,242,242);
+          &:last-child{
+            border-right: 0;
+          }
+          .flex-item-pwd{
+            line-height: 32px;
+            display: block;
+            position: relative;
+            .circle{
+              display: block;
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              border-radius: 5px;
+              left: 50%;
+              top: 50%;
+              margin-left: -5px;
+              margin-top: -5px;
+              background-color: #333333;
+              content: " ";
+            }
+            &.isWrited{
+              .circle{
+                display: block;
+                position: absolute;
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+  .keyboard{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background-color: #fff;
+    &.slide-enter-active, &.slide-leave-active{
+      transition : all 0.2s linear 0.2s;
+    }
+    &.slide-enter,  &.slide-leave-active{
+      transform: translate3d(0,100%, 0)
+    }
+    .vux-flexbox{
+      text-align: center;
+      &:last-child{
+        .vux-flexbox-item{
+          border-bottom: none;
+        }
+      }
+    }
+    .vux-flexbox-item{
+      height: 40px;
+      line-height: 40px;
+      border-right: 1px solid rgb(232,232,232);
+      border-bottom: 1px solid rgb(232,232,232);
+      &:last-child{
+        border-right: 0;
+      }
+      &.empty, &.delete{
+        background-color: rgb(232, 232, 232);
+        &:active,&:focus{
+          background-color:rgb(232, 232, 232);
+        }
+      }
+      .flex-item-keyborad{
+        &:active,&:focus{
+          background-color: rgb(232, 232, 232);
+        }
+      }
+    }
+  }
+}

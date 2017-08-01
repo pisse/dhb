@@ -7,7 +7,7 @@
 <br>甲方（平台用户）：{{profile.idcard_name}}<br>身份证号码：{{profile.idcard}}<br><br>乙方：上海华肖网络科技有限公司<br>
                 <br>上海华肖网络科技有限公司在此郑重提示您，本文系您与乙方之间的法律协议，请您认真阅读并理解本协议。本协议在您和乙方之间具有法律约束力。
 <br>本协议适用于乙方所运营“华肖科技”平台“{{detail.invest_title}}”。<br>
-                <br>第一条&nbsp;&nbsp;甲方认购详情<br>1.1甲方同意按照下列约定认购本项目<br>认购本金金额：<br>预期年化收益率：{{detail.interest | toFixed(2)}}%
+                <br>第一条&nbsp;&nbsp;甲方认购详情<br>1.1甲方同意按照下列约定认购本项目<br>认购本金金额：<br>预期年化收益：{{detail.interest | toFixed(2)}}
 <br>锁定期限：{{invest_date}}天<br>锁定期限起始日：{{detail.interest_begin_date}}<br>锁定期限届满日：{{detail.invest_end_date}}<br>1.2还款方式：{{detail.return_type}}。<br>
 <br><br>第二条&nbsp;&nbsp;本项目详情<br>2.1&nbsp;甲方认购本项目金额将用于出借/受让乙方所运营的互联网金融信息服务平台“华肖科技”
 <!--（www.dahubao.com）-->上的借款项目（包含原始借款项目及债权转让项目，以下简称借款项目）。<br>2.2&nbsp;甲方认购本项目金额仅向经乙方提供信息中介服务的借款项目进行出借/受让。<br>

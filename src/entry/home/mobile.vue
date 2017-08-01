@@ -5,6 +5,10 @@
 
     <group>
       <x-input title='' placeholder="请输入手机号" type="number" v-model="mobile"></x-input>
+      <x-input title='' placeholder="请输入验证码" :max="6" type="number" v-model="code">
+        <x-button v-if="!iscaptchaing" slot="right" type="primary" mini @click.native="getVcode">发送验证码</x-button>
+        <countdown v-else slot="right" v-model="counter" :start="iscaptchaing" @on-finish="finish"></countdown>
+      </x-input>
     </group>
 
     <div class="btn-wrap follow" :class="{active: isActive}">
@@ -31,6 +35,13 @@
     .vux-tab-ink-bar{
       background-color: #5d89eb;
     }
+    .weui-cells{
+      .weui-btn_primary{
+        width: 100px;
+        background-color: #5d89eb;
+      }
+    }
+
     .weui-input{
       font-size: 13px;
     }
@@ -50,7 +61,7 @@
 
 </style>
 <script type="text/ecmascript-6">
-  import { Loading, XHeader, Step, StepItem, XInput, Group, Checklist, XButton, Toast, Tab, TabItem } from 'vux'
+  import { Loading, XHeader, Countdown, Step, StepItem, XInput, Group, Checklist, XButton, Toast, Tab, TabItem } from 'vux'
 
   import Services from '../../common/js/services'
   import _request from '../../common/js/request'
@@ -61,7 +72,10 @@
       return {
         name: '',
         idcard: '',
-        mobile: ''
+        mobile: '',
+        code: '',
+        iscaptchaing: false,
+        counter: 60
       }
     },
     computed: {
@@ -70,17 +84,44 @@
       }
     },
     methods: {
+      getVcode () {
+        if (!this.isActive) {
+          this.showToast = true
+          this.msg = '请输入正确手机号'
+          return
+        }
+        this.iscaptchaing = true
+        this.requestPost(Services.getVcode, {
+          mobile: this.mobile
+        }, () => {
+          this.showToast = true
+          this.msg = '验证码已发送'
+        })
+      },
+      finish () {
+        this.iscaptchaing = false
+        this.counter = 60
+      },
       bind () {
         if (!this.isActive) {
           this.showToast = true
-          this.msg = '手机号格式不对'
+          this.msg = '请输入正确手机号'
+          return
+        }
+        if (this.code === '') {
+          this.showToast = true
+          this.msg = '请输入验证码'
           return
         }
         this.requestPost(Services.bindMobile, {
+          vcode: this.code,
           mobile: this.mobile
         }, (remoteData) => {
           this.showToast = true
-          this.msg = '修改成功'
+          this.msg = '绑定成功'
+
+          this.code = ''
+          this.mobile = ''
 
           setTimeout(() => {
             this.reset()
@@ -94,7 +135,7 @@
       change () {}
     },
     components: {
-      XHeader, Step, StepItem, XInput, Group, Checklist, XButton, Toast, Tab, TabItem, Loading
+      XHeader, Step, StepItem, Countdown, XInput, Group, Checklist, XButton, Toast, Tab, TabItem, Loading
     }
   }
 </script>

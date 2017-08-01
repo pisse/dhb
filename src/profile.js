@@ -7,6 +7,7 @@ import App from './entry/Router.vue'
 import Profiles from './entry/home/profiles'
 import Identity from './entry/home/addIdentity'
 import ChgPwd from './entry/home/chgPwd'
+import ResetPwd from './entry/home/resetPwd'
 import Mobile from './entry/home/mobile'
 import CardList from './entry/home/cardList'
 import addCard from './entry/home/addCard'
@@ -26,6 +27,9 @@ const routes = [{
 }, {
   path: '/chgpwd',
   component: ChgPwd
+}, {
+  path: '/chgpwd/reset',
+  component: ResetPwd
 }, {
   path: '/mobile',
   component: Mobile

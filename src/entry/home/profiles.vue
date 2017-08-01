@@ -6,7 +6,9 @@
     <group label-width="4.5em" label-margin-right="2em" label-align="left">
       <cell title="实名认证"  value-align="right" is-link link="/identity">{{profile.idcard_name}}
       <i class="iconfont" :class="{'icon-shenhezhong': authStatus==1, 'icon-yirenzheng2': authStatus==10,  'icon-iconfontyuanjiaojuxing1eps': authStatus===0} "></i></cell>
-      <cell title="手机号码" :value="profile.phone"  value-align="right" link="/mobile"></cell>
+
+      <cell title="手机号码" v-if="profile.phone" :value="profile.phone"  value-align="right"></cell>
+      <cell title="手机号码" v-else value=""  value-align="right" link="/mobile"></cell>
 
      <!-- <cell title="身份证" v-if="!profile.idcard" value=""  is-link value-align="right" link="/identity"></cell>
       <cell title="身份证" v-else :value="profile.idcard"  value-align="right"></cell>-->

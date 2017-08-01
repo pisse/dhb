@@ -5,10 +5,11 @@
 
     <group>
       <x-input title='' placeholder="请输入原密码" :max="6" type="password" v-model="old"></x-input>
-      <x-input title='' placeholder="请输入6位数字新密码" :max="6" type="password" v-model="new1" ></x-input>
-      <x-input title='' placeholder="请再次输入6位数字新密码" :max="6" type="password" v-model="new2"></x-input>
+      <x-input title='' placeholder="请输入新密码" :max="6" type="password" v-model="new1" ></x-input>
+      <x-input title='' placeholder="请再次输入新密码" :max="6" type="password" v-model="new2"></x-input>
     </group>
 
+    <div class="pwd-desc">密码为6位数字</div>
     <div class="btn-wrap follow" :class="{active: isActive}">
       <x-button type="primary" @click.native="confirm" :disabled="isDisabled">确认修改</x-button>
     </div>
@@ -16,6 +17,7 @@
 
     <div class="info">
       初始密码：000000
+      <span class="forget" @click="goReset">忘记密码</span>
     </div>
 
     <div v-transfer-dom>
@@ -41,15 +43,19 @@
     .weui-input{
       font-size: 13px;
     }
-    .account-other{
+    .pwd-desc{
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      margin-bottom: -10px;
+      line-height: 30px;
+    }
+    .info{
       font-size: 12px;
       margin: 10px;
-      color: #5d89eb;
-      .register a{
-        color: #5d89eb;
-      }
       .forget{
         float: right;
+        color: #5d89eb;
       }
     }
 
@@ -97,8 +103,8 @@
           this.$router.app.data = remoteData.data
         })
       },
-      $t (t) {
-        return t
+      goReset () {
+        this.$router.push({path: '/chgpwd/reset'})
       },
       confirm () {
         if (this.old === '') {
@@ -122,7 +128,7 @@
           return
         }
         if (/\D/.test(this.new1)) {
-          this.msg = '密码只能为数字'
+          this.msg = '密码为6位数字'
           return
         }
 

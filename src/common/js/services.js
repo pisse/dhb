@@ -33,9 +33,13 @@ let Services = {
   bindBankCard: Domain + 'my/bind-bank-card',
   myProfile: Domain + 'my/my-profile',
   newPwd: Domain + 'my/set-paypwd',
+  resetPwd: Domain + 'my/forgot-paypwd',
   wxLogin: Domain + 'wx/login',
   recharge: Domain + 'my/recharge',
-  mention: Domain + 'my/mention'
+  mention: Domain + 'my/mention',
+
+  // 获取验证码
+  getVcode: Domain + 'my/get-vcode'
 }
 
 export default Services

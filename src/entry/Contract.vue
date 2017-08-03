@@ -16,9 +16,9 @@
 
                 根据国家有关协议方面的法律法规和规章，经甲、乙双方协议一致达成以下协议：
                 <br>
-                一、甲方自愿将人民币￥ <span class="num">{{detail.invest_amount}}</span>元，大写（{{detail.invest_amount | toBig}}    ）元，
-                委托乙方代替寻找用款人，因出借资金而获取的相关款项金额为 <span class="num">{{detail.invest_amount}}</span>，
-                预期年化收益 <span class="num">{{detail.interest | toFixed(2)}}</span>元(365天)。
+                一、甲方自愿将人民币￥ <span class="num">{{detail.invest_amount}}</span>元，大写（{{detail.invest_amount | toBig}}圆），
+                委托乙方代替寻找用款人，因出借资金而获取的相关款项金额为 <span class="num">{{detail.interest}}</span>元，
+                预期年利率<span class="num">{{detail.interest_rate | toFixed(2)}}</span>%(365天)。
                 <br><br>
                 二、甲方的权利和义务
                 <br>
@@ -157,60 +157,60 @@
           switch (perchar) {
             case '0': tmpnewchar = '零' + tmpnewchar
               break
-            case '1': tmpnewchar = '一' + tmpnewchar
+            case '1': tmpnewchar = '壹' + tmpnewchar
               break
-            case '2': tmpnewchar = '二' + tmpnewchar
+            case '2': tmpnewchar = '贰' + tmpnewchar
               break
-            case '3': tmpnewchar = '三' + tmpnewchar
+            case '3': tmpnewchar = '叁' + tmpnewchar
               break
-            case '4': tmpnewchar = '四' + tmpnewchar
+            case '4': tmpnewchar = '肆' + tmpnewchar
               break
-            case '5': tmpnewchar = '五' + tmpnewchar
+            case '5': tmpnewchar = '伍' + tmpnewchar
               break
-            case '6': tmpnewchar = '六' + tmpnewchar
+            case '6': tmpnewchar = '陆' + tmpnewchar
               break
-            case '7': tmpnewchar = '七' + tmpnewchar
+            case '7': tmpnewchar = '柒' + tmpnewchar
               break
-            case '8': tmpnewchar = '八' + tmpnewchar
+            case '8': tmpnewchar = '捌' + tmpnewchar
               break
-            case '9': tmpnewchar = '九' + tmpnewchar
+            case '9': tmpnewchar = '玖' + tmpnewchar
               break
           }
           switch (part[0].length - i - 1) {
             case 0:
               break
-            case 1: if (perchar != 0) tmpnewchar = tmpnewchar + '十'
+            case 1: if (perchar != 0) tmpnewchar = tmpnewchar + '拾'
               break
-            case 2: if (perchar != 0) tmpnewchar = tmpnewchar + '百'
+            case 2: if (perchar != 0) tmpnewchar = tmpnewchar + '佰'
               break
-            case 3: if (perchar != 0) tmpnewchar = tmpnewchar + '千'
+            case 3: if (perchar != 0) tmpnewchar = tmpnewchar + '仟'
               break
             case 4: tmpnewchar = tmpnewchar + '万'
               break
-            case 5: if (perchar != 0) tmpnewchar = tmpnewchar + '十'
+            case 5: if (perchar != 0) tmpnewchar = tmpnewchar + '拾'
               break
-            case 6: if (perchar != 0) tmpnewchar = tmpnewchar + '百'
+            case 6: if (perchar != 0) tmpnewchar = tmpnewchar + '佰'
               break
-            case 7: if (perchar != 0) tmpnewchar = tmpnewchar + '千'
+            case 7: if (perchar != 0) tmpnewchar = tmpnewchar + '仟'
               break
             case 8:
-              tmpnewchar = tmpnewchar + '亿'
+              tmpnewchar = tmpnewchar + '億'
               break
             case 9:
-              tmpnewchar = tmpnewchar + '十'
+              tmpnewchar = tmpnewchar + '拾'
               break
           }
           newchar = tmpnewchar + newchar
         }
         // 替换所有无用汉字，直到没有此类无用的数字为止
-        while (newchar.search('零零') != -1 || newchar.search('零亿') != -1 || newchar.search('亿万') != -1 || newchar.search('零万') != -1) {
-          newchar = newchar.replace('零亿', '亿')
-          newchar = newchar.replace('亿万', '亿')
+        while (newchar.search('零零') != -1 || newchar.search('零億') != -1 || newchar.search('億万') != -1 || newchar.search('零万') != -1) {
+          newchar = newchar.replace('零億', '億')
+          newchar = newchar.replace('億万', '億')
           newchar = newchar.replace('零万', '万')
           newchar = newchar.replace('零零', '零')
         }
         // 替换以“一十”开头的，为“十”
-        if (newchar.indexOf('一十') == 0) {
+        if (newchar.indexOf('壹拾') == 0) {
           newchar = newchar.substr(1)
         }
         // 替换以“零”结尾的，为“”

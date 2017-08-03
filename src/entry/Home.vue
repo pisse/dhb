@@ -6,7 +6,7 @@
         <p class="logo-wrap"><i class="iconfont icon-dian"></i><span class="logo" :style="{backgroundImage: 'url(' + profile.headimgurl + ')'}"></span></p>
         <p class="account-name" v-if="profile.nickname">{{profile.nickname}}</p>
         <p class="account-name" v-else> 未登录<!--<a href="./login.html">请登录</a>--></p>
-        <span>我的理财</span>
+        <span>我的</span>
       </div>
 
       <div class="asset-wrap">
@@ -28,7 +28,7 @@
     </div>
 
     <group class="group-wrap" label-width="4.5em" label-margin-right="2em" label-align="right">
-      <cell title="理财项目" value="" is-link  @click.native="goManage" >
+      <cell title="我的项目" value="" is-link  @click.native="goManage" >
         <div slot="icon">
           <i class="iconfont icon-touzi"></i>
         </div>

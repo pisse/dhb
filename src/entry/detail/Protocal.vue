@@ -16,7 +16,7 @@
 
                 根据国家有关协议方面的法律法规和规章，经甲、乙双方协议一致达成以下协议：
                 <br>
-                一、甲方自愿将人民币￥ <span class="num"></span>元，大写（    ）元，委托乙方代替寻找用款人，因出借资金而获取的相关款项金额为 <span class="num"></span>，预期年利率 <span class="num">{{detail.rate | toFixed(2)}}%</span>(365天)。
+                一、甲方自愿将人民币￥ <span class="num"></span>元，大写（    ）元，委托乙方代替寻找用款人，因出借资金而获取的相关款项金额为 <span class="num"></span>元，预期年利率 <span class="num">{{detail.rate | toFixed(2)}}%</span>(365天)。
                 <br><br>
                 二、甲方的权利和义务
                 <br>

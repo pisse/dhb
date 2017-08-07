@@ -20,7 +20,7 @@
     </div>
 
     <group title="">
-      <x-input title='金额' type="number" placeholder="100的整数倍"  v-model="buyAmount"></x-input>
+      <x-input title='金额' type="number" :placeholder="placeholder"  v-model="buyAmount"></x-input>
     </group>
 
     <div class="invest-contract">
@@ -158,6 +158,14 @@ export default {
     },
     pwdLength () {
       return this.pwd.length
+    },
+    placeholder () {
+      let each_min = ''
+      if (this.detail.each_min) {
+        each_min = this.detail.each_min / 10000
+        return `${each_min}万起投 ${each_min}万递增`
+      }
+      return each_min
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -193,9 +201,10 @@ export default {
         this.msg = '购买金额不对'
         return
       }
-      if (this.buyAmount % 100 > 0) {
+      let each_min = this.detail.each_min
+      if (this.buyAmount % each_min > 0) {
         this.showToast = true
-        this.msg = '购买金额为100的整数'
+        this.msg = this.placeholder
         return
       }
       this.showPwd = true

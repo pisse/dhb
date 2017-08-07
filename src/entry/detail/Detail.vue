@@ -30,7 +30,7 @@
           <i class="iconfont icon-jiaoyimingxiicon"></i>
         </div>-->
       </cell>
-      <cell title="起投金额" :value="detail.each_min | toFixed(2)" value-align="right" ></cell>
+      <cell title="起投金额" :value="moneyStart" value-align="right" ></cell>
     <!--  <cell title="融资金额" :value="detail.amount | toFixed(2)"  value-align="right"></cell>-->
       <cell title="计息方式" value="预约后次日计息"  value-align="right"></cell>
       <cell title="项目详情" value=""  value-align="right">
@@ -91,6 +91,16 @@ export default {
       showConfirmDialog: false,
       showConfirm: false,
       confirmMsg: ''
+    }
+  },
+  computed: {
+    moneyStart () {
+      let each_min = ''
+      if (this.detail.each_min) {
+        each_min = this.detail.each_min / 10000
+        return `${each_min}万元`
+      }
+      return each_min
     }
   },
   filters: {

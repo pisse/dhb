@@ -9,6 +9,8 @@ import Service from './services'
 let Request = {
   data () {
     return {
+      pageSize: 20,
+      currentPage: 0,
       isLoading: false,
       showToast: false,
       msg: '',
@@ -36,7 +38,7 @@ let Request = {
           this.wxLogin()
         }
         if (remoteData.code === 0) {
-          callback.call(this, remoteData)
+          return callback.call(this, remoteData)
         } else {
           this.showToast = true
           this.msg = remoteData.msg || remoteData.message

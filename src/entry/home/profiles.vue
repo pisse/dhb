@@ -46,6 +46,7 @@ import vFooter from '../../components/footbar'
 import { Tab, Loading, TabItem, Group, Cell, ButtonTab, ButtonTabItem, XHeader, XButton } from 'vux'
 import Services from '../../common/js/services'
 import _request from '../../common/js/request'
+import utils from '../../common/js/utils'
 
 export default {
   mixins: [_request],
@@ -70,7 +71,12 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      vm.getProfile()
+      vm.getProfile().then((data) => {
+        let route = utils.getParams('', 'rt')
+        if (route) {
+          vm.$router.replace(route)
+        }
+      })
       vm.checkIsAuth()
     })
   },
@@ -78,11 +84,18 @@ export default {
     // this.getProfile()
   },
   methods: {
+    // 0 未认证，10 已认证， 1 认证中, 2 认证失败
     checkIsAuth () {
       this.requestPost(Services.isAuth, {
       }, (remoteData) => {
         this.isAuth = remoteData.isAuth
         this.authStatus = remoteData.auth_status
+        // 自助认证
+        if (this.authStatus == 0 || this.authStatus == 2) {
+          this.requestPost(Services.autoAuth, {
+          }, (remoteData) => {
+          })
+        }
       })
     },
     loginOut () {
@@ -92,10 +105,11 @@ export default {
       })
     },
     getProfile () {
-      this.requestPost(Services.myProfile, {
+      return this.requestPost(Services.myProfile, {
       }, (remoteData) => {
         this.profile = remoteData.data
         this.$router.app.data = remoteData.data
+        return remoteData
       })
     }
   },

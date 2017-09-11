@@ -9,13 +9,16 @@
         <span class="column-name">借款人</span>
         <span class="column-amount">金额（元）</span>
       </div>
-      <div class="records-list">
-        <div class="record-item" v-for="(record, idx) in records" >
-          <p class="account">{{record.realName}}</p>
-          <p class="date">{{record.days}}天</p>
-          <span class="amount">{{record.amount | toFixed(2)}}</span>
+      <scroller lock-x @on-scroll-bottom="onScrollBottom" ref="scrollerBottom" :scroll-bottom-offst="10" height="-56">
+        <div class="records-list">
+            <div class="record-item" v-for="(record, idx) in records" >
+              <p class="account">{{record.realName}}</p>
+              <p class="date">{{record.days}}天</p>
+              <span class="amount">{{record.amount | toFixed(2)}}</span>
+            </div>
+          <load-more tip="加载中..."></load-more>
         </div>
-      </div>
+      </scroller>
     </template>
     <div class="empty" v-else>
       暂无记录
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-import { XHeader, Toast, Loading } from 'vux'
+import { Scroller, XHeader, Toast, Loading, LoadMore } from 'vux'
 import Services from '../common/js/services'
 import _request from '../common/js/request'
 import utils from '../common/js/utils'
@@ -51,6 +54,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
+      vm.currentPage = 0
       vm.getRecords()
     })
   },
@@ -60,15 +64,27 @@ export default {
   methods: {
     getRecords () {
       var id = utils.getParams('', 'id')
+      this.currentPage = this.currentPage + 1
       this.requestPost(Services.prodRecordsDetail, {
+        page: this.currentPage,
+        page_size: this.pageSize,
         invest_list_id: id
       }, (remoteData) => {
-        this.records = remoteData.data
+        this.records = this.records.concat(remoteData.data)
+        this.$nextTick(() => {
+          this.$refs.scrollerBottom.reset()
+        })
       })
+    },
+    onScrollBottom () {
+      if (this.isLoading) {
+      } else {
+        this.getRecords()
+      }
     }
   },
   components: {
-    XHeader, Loading, Toast
+    Scroller, XHeader, Loading, Toast, LoadMore
   }
 }
 </script>

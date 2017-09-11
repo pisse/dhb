@@ -16,6 +16,7 @@
     background-color :#fff;
     font-size : 10px;
     line-height : 18px;
+    z-index :1;
     border-top : 1px solid rgb(230,230,230)
     .footer-item{
       flex: 1;

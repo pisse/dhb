@@ -25,6 +25,7 @@ let Services = {
 
   // 我的
   isAuth: Domain + 'my/is-auth',
+  autoAuth: Domain + 'my/auth',
   myInvestList: Domain + 'my/my-invest',
   myTrade: Domain + 'my/my-trade',
   bindCard: Domain + 'my/bind-idcard',
@@ -37,6 +38,9 @@ let Services = {
   wxLogin: Domain + 'wx/login',
   recharge: Domain + 'my/recharge',
   mention: Domain + 'my/mention',
+
+  // 认证状态
+  authStatus: Domain + 'my/authstatus',
 
   // 获取验证码
   getVcode: Domain + 'my/get-vcode'

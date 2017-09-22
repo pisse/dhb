@@ -170,7 +170,7 @@
         return this.typeClsses[type]
       },
       moneyCode (type) {
-        if (type == 1 || type == 4) {
+        if (type == 1 || type == 5) {
           return '+'
         }
         if (type == 3) {

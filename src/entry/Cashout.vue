@@ -242,7 +242,7 @@
           this.msg = '请选择银行卡'
           return
         }
-        if (!/^\d+$/.test(this.money)) {
+        if (!/^\d+(\.\d+)?$/.test(this.money)) {
           this.showToast = true
           this.msg = '提现金额不对'
           return

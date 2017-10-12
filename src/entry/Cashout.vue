@@ -4,7 +4,7 @@
     <group title="">
       <!--<cell title="真实姓名" :value="profile.idcard_name" ></cell>-->
 
-      <cell :title="(selectedCard.bank_name || '')+'，尾号'+ last4(selectedCard.card_no)" link="/in/list" :inline-desc='backDesc'>
+      <cell :title="(selectedCard.bank_name || '')+'，尾号'+ last4(selectedCard.card_no)" :inline-desc='backDesc'>
         <div slot="icon" class="back-icon">
           <i class="iconfont" :class="bankIcon"></i>
         </div>
@@ -228,8 +228,24 @@
         }, (remoteData) => {
           this.profile = remoteData.data || {}
           this.$router.app.data = remoteData.data
-          this.selectedCard = this.profile.selectedCard || (this.profile.bankcard && this.profile.bankcard[0] || {})
+          let safeCard = this.getSafeCard(this.profile.bankcard) // this.profile.selectedCard || (this.profile.bankcard && this.profile.bankcard[0] || {})
+          if (safeCard) {
+            this.selectedCard = safeCard
+          } else {
+            this.showToast = true
+            this.msg = '您尚未绑定安全卡'
+            setTimeout(() => {
+              this.$router.go(-1)
+            }, 1000)
+          }
         })
+      },
+      getSafeCard (cards) {
+        cards = cards || []
+        let card = cards.find((item, idx) => {
+          return item.is_safe_card
+        })
+        return card
       },
       buy () {
         if (this.money == 0) {

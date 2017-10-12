@@ -7,7 +7,7 @@
 
       <template v-if="authStatus==0">
         <x-input title='' placeholder="请输入真实姓名" type="text" v-model="name"></x-input>
-        <x-input title='' placeholder="请输入身份证号" type="number" v-model="idcard"></x-input>
+        <x-input title='' placeholder="请输入身份证号" type="text" v-model="idcard"></x-input>
         <!--<x-input title='' placeholder="请输入手机号" type="number" v-model="mobile"></x-input>-->
       </template>
 
@@ -135,6 +135,10 @@
         if (this.idcard === '') {
           this.showToast = true
           this.msg = '身份证号不能为空'
+          return
+        } else if (this.idcard.length != 18) {
+          this.showToast = true
+          this.msg = '请输入18位身份证号'
           return
         }
         /* if (this.mobile && !(/^1[3|4|5|8][0-9]\d{4,8}$/.test(this.mobile))) {

@@ -231,8 +231,8 @@
         this.requestPost(Services.myProfile, {
         }, (remoteData) => {
           this.profile = remoteData.data || {}
+          this.selectedCard = (this.$router.app.data && this.$router.app.data.selectedCard) || (this.profile.bankcard && this.profile.bankcard[0] || {})
           this.$router.app.data = remoteData.data
-          this.selectedCard = this.profile.selectedCard || (this.profile.bankcard && this.profile.bankcard[0] || {})
         })
       },
       cartNo (number) {

@@ -107,11 +107,11 @@
           '民生银行': {icon: 'icon-305', dayMax: '3000', onceMax: '100'},
           '交通银行': {icon: 'icon-jiaotongyinhangbank1193391easyiconnet', dayMax: '50', onceMax: '50'},
           '广发银行': {icon: 'icon-guangfa', dayMax: '3000', onceMax: '100'},
-          '招商银行': {icon: 'icon-zhaoshangyinhangbank1193432easyiconnet', dayMax: '3000', onceMax: '100'}
+          '招商银行': {icon: 'icon-zhaoshangyinhangbank1193432easyiconnet', dayMax: '3000', onceMax: '100'},
 
-          // '农业银行': 'icon-nongyeyinhang',
+          '农业银行': {icon: 'icon-nongyeyinhang', dayMax: '20', onceMax: '20'},
           // '建设银行': 'icon-jiansheyinhangbank1193390easyiconnet',
-          // '中国银行': 'icon-zhongguoyinhangbank1193437easyiconnet',
+          '中国银行': {icon: 'icon-zhongguoyinhangabnk1193437easyiconnet', dayMax: '20', onceMax: '5'}
           // '光大银行': 'icon-guangdayinxingyy',
           // '浦发银行': 'icon-iconfontshanghaipudongfazhanyinxing',
           // '上海银行': 'icon-shanghaiyinxing'
@@ -135,7 +135,7 @@
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {
-        vm.profile = vm.$router.app.data
+        vm.profile = vm.$router.app.data || {}
         // vm.getProfile()
       })
     },

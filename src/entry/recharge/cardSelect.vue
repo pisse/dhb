@@ -110,7 +110,7 @@
           '招商银行': {icon: 'icon-zhaoshangyinhangbank1193432easyiconnet', dayMax: '3000', onceMax: '100'},
 
           '农业银行': {icon: 'icon-nongyeyinhang', dayMax: '20', onceMax: '20'},
-          // '建设银行': 'icon-jiansheyinhangbank1193390easyiconnet',
+          '建设银行': {icon: 'icon-jiansheyinhangbank1193390easyiconnet', dayMax: '50', onceMax: '5'},
           '中国银行': {icon: 'icon-zhongguoyinhangabnk1193437easyiconnet', dayMax: '20', onceMax: '5'}
           // '光大银行': 'icon-guangdayinxingyy',
           // '浦发银行': 'icon-iconfontshanghaipudongfazhanyinxing',

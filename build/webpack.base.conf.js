@@ -58,12 +58,21 @@ var webpackConfig = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]'),
-          publicPath: './'  // good
+          publicPath: '../../'
+        }
+      },
+      {
+        test: /\.(jpe?g)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+          publicPath: './'
         }
       },
       {
@@ -72,7 +81,7 @@ var webpackConfig = {
         options: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
-          publicPath: '../../'  // good
+          publicPath: '../../'
         }
       }
     ]

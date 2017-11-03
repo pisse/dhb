@@ -11,6 +11,7 @@ import ResetPwd from './entry/home/resetPwd'
 import Mobile from './entry/home/mobile'
 import CardList from './entry/home/cardList'
 import addCard from './entry/home/addCard'
+import authProtocal from './entry/home/authProtocal'
 // import Home from './components/HelloFromVux'
 import VueResource from 'vue-resource'
 
@@ -39,6 +40,9 @@ const routes = [{
 }, {
   path: '/cardlist/add',
   component: addCard
+}, {
+  path: '/cardlist/add/protocal',
+  component: authProtocal
 }]
 
 const router = new VueRouter({

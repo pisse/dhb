@@ -80,7 +80,7 @@
     },
     computed: {
       isActive () {
-        return this.mobile && (/^1[3|4|5|8][0-9]\d{8}$/.test(this.mobile))
+        return this.mobile && (/^1[3|4|5|7|8][0-9]\d{8}$/.test(this.mobile))
       }
     },
     methods: {
